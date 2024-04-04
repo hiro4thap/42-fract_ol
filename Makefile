@@ -12,7 +12,9 @@ NAME = fractol
 FWORKS = -framework OpenGL -framework AppKit
 LIBS = -L$(LFT_DIR) -lft -L$(MLX_DIR) -lmlx
 
-SRC = fractol.c
+INCS = -Iinc/ 
+
+SRC = fractol.c #math_utils.c
 LIBFT = $(addprefix $(LFT_DIR), libft.a)
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
@@ -21,11 +23,11 @@ all:$(NAME)
 
 $(NAME):$(OBJ) $(LIBFT)
 	make -C $(LFT_DIR)
-	$(CC) $(OBJ) $(CFLAGS) $(LIBS) $(FWORKS) -o $@ 
+	$(CC) $(OBJ) $(CFLAGS) $(INCS) $(LIBS) $(FWORKS) -o $@ 
 
 $(OBJ):$(SRCS) 
 	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LFT_DIR)

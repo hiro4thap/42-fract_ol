@@ -6,12 +6,25 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/03/30 17:14:17 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/04 19:25:14 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+
+# define XK_ESC 53
+
+# define HEIGHT 800
+# define WIDTH 800
+# define ITR 40
+
+# define C_BLACK 0x00000000
+# define C_BLUE 0x0012004c
+# define C_YELLOW 0x00ffd966
+
+//TOOD:set message
+# define INVALID_INPUT "input should be..."
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -20,5 +33,35 @@
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_img;
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	double	zoom;
+	int		fractal_type; //1:mandelbrot 2:julia
+	double	julia_x;
+	double	julia_y;
+}				t_vars;
+
+typedef struct s_complex
+{
+	double	x;
+	double	y;
+}				t_complex;
+
+//double		scale(double value, double new_max, double new_min, double old_max, double old_min);
+//t_complex	sum_complex(t_complex z1, t_complex z2);
+//t_complex	square_complex(t_complex z);
 
 #endif
