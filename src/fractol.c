@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 16:56:36 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 18:02:38 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	put_mandelbrot(t_vars vars, int x, int y)
 	t_complex	z;
 	t_complex	c;
 
-	z.x = scale(x, 1.0, -2.0, HEIGHT, 0);
-	z.y = scale(y, -1.5, 1.5, WIDTH, 0);
+	z.x = scale(x, 1.0, -2.0, HEIGHT, 0) * vars.zoom;
+	z.y = scale(y, -1.5, 1.5, WIDTH, 0) * vars.zoom;
 	c.x = z.x;
 	c.y = z.y;
 	i = 0;
@@ -50,10 +50,10 @@ void	put_julia(t_vars vars, int x, int y)
 	t_complex	z;
 	t_complex	c;
 
-	z.x = scale(x, 1.5, -1.5, HEIGHT, 0);
-	z.y = scale(y, -1.5, 1.5, WIDTH, 0);
-	c.x = vars.julia_x;
-	c.y = vars.julia_y;
+	z.x = scale(x, 1.5, -1.5, HEIGHT, 0) * vars.zoom;
+	z.y = scale(y, -1.5, 1.5, WIDTH, 0) * vars.zoom;
+	c.x = vars.julia_x * vars.zoom;
+	c.y = vars.julia_y * vars.zoom;
 	i = 0;
 	while(i < ITR)
 	{

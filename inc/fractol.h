@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 16:18:44 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 17:47:47 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ typedef struct s_img
 
 typedef struct s_vars
 {
+	//mlx
 	void	*mlx;
 	void	*win;
+	//img
 	t_img	img;
+	//params
 	double	zoom;
 	int		fractal_type; //1:mandelbrot 2:julia
 	double	julia_x;
@@ -72,6 +75,5 @@ int 		key_hook(int keysym, t_vars *vars);
 
 //fractol
 void		fractal(t_vars vars);
-
 
 #endif
