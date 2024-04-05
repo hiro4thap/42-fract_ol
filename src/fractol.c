@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 18:02:38 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 19:31:41 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	put_mandelbrot(t_vars vars, int x, int y)
@@ -31,13 +31,14 @@ void	put_mandelbrot(t_vars vars, int x, int y)
 	c.x = z.x;
 	c.y = z.y;
 	i = 0;
-	while(i < ITR)
+	while (i < ITR)
 	{
 		z = sum_complex(square_complex(z), c);
 		if (pow(z.x, 2) + pow(z.y, 2) > 4)
 		{
-			my_mlx_pixel_put(&vars.img, x, y, scale(i, C_YELLOW, C_BLUE, ITR, 0));
-			return;
+			my_mlx_pixel_put(&vars.img, x, y,
+				scale(i, C_YELLOW, C_BLUE, ITR, 0));
+			return ;
 		}
 		i++;
 	}
@@ -55,13 +56,14 @@ void	put_julia(t_vars vars, int x, int y)
 	c.x = vars.julia_x * vars.zoom;
 	c.y = vars.julia_y * vars.zoom;
 	i = 0;
-	while(i < ITR)
+	while (i < ITR)
 	{
 		z = sum_complex(square_complex(z), c);
 		if (pow(z.x, 2) + pow(z.y, 2) > 4)
 		{
-			my_mlx_pixel_put(&vars.img, x, y, scale(i, C_YELLOW, C_BLUE, ITR, 0));
-			return;
+			my_mlx_pixel_put(&vars.img, x, y,
+				scale(i, C_YELLOW, C_BLUE, ITR, 0));
+			return ;
 		}
 		i++;
 	}
@@ -99,14 +101,13 @@ t_vars	init_mlx(void)
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "fractol");
 	vars.img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bpp,
-					&vars.img.line_length,&vars.img.endian);
+			&vars.img.line_length, &vars.img.endian);
 	vars.fractal_type = 1;
 	vars.zoom = 1.0;
 	return (vars);
 }
 
-
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	t_vars	vars;
 
@@ -126,6 +127,7 @@ int main(int ac, char *av[])
 	fractal(vars);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
+	mlx_hook(vars.win, ON_DESTROY, 0, free_mlx, &vars);
 	mlx_loop(vars.mlx);
 	return (1);
 }

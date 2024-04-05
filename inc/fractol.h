@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 17:47:47 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 19:38:42 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define C_BLACK 0x00000000
 # define C_BLUE 0x0012004c
 # define C_YELLOW 0x00ffd966
+# define ON_DESTROY 17
 
 //TOOD:set message
 # define INVALID_INPUT "input should be..."
@@ -70,8 +71,9 @@ t_complex	square_complex(t_complex z);
 double		atodb(char *str);
 
 //event_hook
+int			free_mlx(t_vars *vars);
 int			mouse_hook(int mousesym, int x, int y, t_vars *vars);
-int 		key_hook(int keysym, t_vars *vars);
+int			key_hook(int keysym, t_vars *vars);
 
 //fractol
 void		fractal(t_vars vars);
