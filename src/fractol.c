@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:41 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 20:02:15 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	put_julia(t_vars vars, int x, int y)
 
 	z.x = scale(x, 1.5, -1.5, HEIGHT, 0) * vars.zoom;
 	z.y = scale(y, -1.5, 1.5, WIDTH, 0) * vars.zoom;
-	c.x = vars.julia_x * vars.zoom;
-	c.y = vars.julia_y * vars.zoom;
+	c.x = vars.julia_x; 
+	c.y = vars.julia_y;
 	i = 0;
 	while (i < ITR)
 	{
