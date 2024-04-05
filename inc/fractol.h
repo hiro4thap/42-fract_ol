@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/04 19:25:14 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/05 16:18:44 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,18 @@ typedef struct s_complex
 	double	y;
 }				t_complex;
 
-//double		scale(double value, double new_max, double new_min, double old_max, double old_min);
-//t_complex	sum_complex(t_complex z1, t_complex z2);
-//t_complex	square_complex(t_complex z);
+//math_utils
+double		scale(double value, double new_max, double new_min, double old_max, double old_min);
+t_complex	sum_complex(t_complex z1, t_complex z2);
+t_complex	square_complex(t_complex z);
+double		atodb(char *str);
+
+//event_hook
+int			mouse_hook(int mousesym, int x, int y, t_vars *vars);
+int 		key_hook(int keysym, t_vars *vars);
+
+//fractol
+void		fractal(t_vars vars);
+
 
 #endif

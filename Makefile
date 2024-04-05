@@ -14,7 +14,9 @@ LIBS = -L$(LFT_DIR) -lft -L$(MLX_DIR) -lmlx
 
 INCS = -Iinc/ 
 
-SRC = fractol.c #math_utils.c
+SRC = fractol.c \
+		 math_utils.c \
+		 event_hook.c
 LIBFT = $(addprefix $(LFT_DIR), libft.a)
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
@@ -23,9 +25,11 @@ all:$(NAME)
 
 $(NAME):$(OBJ) $(LIBFT)
 	make -C $(LFT_DIR)
+	echo $(OBJ)
+	echo $(SRCS)
 	$(CC) $(OBJ) $(CFLAGS) $(INCS) $(LIBS) $(FWORKS) -o $@ 
 
-$(OBJ):$(SRCS) 
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
