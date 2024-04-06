@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/06 15:30:50 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 19:03:34 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define C_YELLOW 0x00ffd966
 # define ON_DESTROY 17
 
-//TOOD:set message
-# define INVALID_INPUT "input should be..."
+# define INVALID_ARGUMENTS "arguments should be as follows.\n"
+# define ARGUMENTS_EXAMPLE "mandelbrot\njulia [real number] [img number]\n"
 
 # include <fcntl.h>
 # include <stdio.h>

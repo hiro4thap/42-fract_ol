@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/06 15:42:49 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 19:39:00 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	fractal(t_vars vars)
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
 }
 
-t_vars	init_mlx(void)
+t_vars	init_mlx(char **av)
 {
 	t_vars	vars;
 
@@ -102,28 +102,58 @@ t_vars	init_mlx(void)
 	vars.img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bpp,
 			&vars.img.line_length, &vars.img.endian);
-	vars.fractal_type = 1;
 	vars.zoom = 1.0;
+	if (!ft_strncmp(av[1], "mandelbrot" ,11))
+		vars.fractal_type = 1;
+	else if (!ft_strncmp(av[1], "julia", 6))
+	{
+		vars.fractal_type = 2;
+		vars.julia_x = atodb(av[2]);
+		vars.julia_y = atodb(av[3]);
+	}
 	return (vars);
+}
+
+int	is_double(char *str)
+{
+	if (*str == '-')
+		str++;
+while (ft_isdigit(*str))
+		str++;
+	if (*str == '\0')
+		return (1);
+	else if (*str == '.')
+		str++;
+	else
+		return (0);
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == '\0')
+		return (1);
+	return (0);
+}
+
+int	is_arg_valid(int ac, char *av[])
+{
+	if (ac == 2 && !ft_strncmp(av[1], "mandelbrot", 11))
+		return (1);
+	else if (ac == 4 && !ft_strncmp(av[1], "julia", 6)
+		&& is_double(av[2]) && is_double(av[3]))
+		return (1);
+	return (0);
 }
 
 int	main(int ac, char *av[])
 {
 	t_vars	vars;
 
-	(void) av;
-	if (ac != 1 && ac != 3)
+	if (!is_arg_valid(ac, av))
 	{
-		ft_printf(INVALID_INPUT);
+		ft_printf(INVALID_ARGUMENTS);
+		ft_printf(ARGUMENTS_EXAMPLE);
 		return (1);
 	}
-	vars = init_mlx();
-	if (ac == 3)
-	{
-		vars.fractal_type = 2;
-		vars.julia_x = atodb(av[1]);
-		vars.julia_y = atodb(av[2]);
-	}
+	vars = init_mlx(av);
 	fractal(vars);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);

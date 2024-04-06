@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:13:56 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/06 15:43:53 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 18:24:43 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	mouse_hook(int mousesym, int x, int y, t_vars *vars)
 	if (mousesym == 1 | mousesym == 2 | mousesym == 3)
 		return (1);
 	if (mousesym == 4)
-		vars->zoom *= 1.10;
+		vars->zoom *= 1.40;
 	else if (mousesym == 5)
-		vars->zoom /= 1.10;
+		vars->zoom /= 1.40;
 	vars->img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bpp,
 			&vars->img.line_length, &vars->img.endian);

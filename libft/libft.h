@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:44:48 by hiono             #+#    #+#             */
-/*   Updated: 2024/03/09 23:18:15 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 15:49:52 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <strings.h>
 
 typedef struct s_list
