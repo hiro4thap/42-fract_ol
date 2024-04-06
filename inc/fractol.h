@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 19:38:42 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 15:30:50 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct s_img
 {

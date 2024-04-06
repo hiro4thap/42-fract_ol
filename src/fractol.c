@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 20:02:15 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 15:42:49 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	main(int ac, char *av[])
 	(void) av;
 	if (ac != 1 && ac != 3)
 	{
-		printf(INVALID_INPUT);
+		ft_printf(INVALID_INPUT);
 		return (1);
 	}
 	vars = init_mlx();
