@@ -16,8 +16,9 @@ LIBS = -L$(LFT_DIR) -lft -L$(PRNT_DIR) -lftprintf -L$(MLX_DIR) -lmlx
 INCS = -Iinc/ 
 
 SRC = fractol.c \
-		 math_utils.c \
-		 event_hook.c
+		math_utils.c \
+		event_hook.c \
+		validation.c
 
 LIBFT = $(addprefix $(LFT_DIR), libft.a)
 LIBPRNT = $(addprefix $(PRNT_DIR), libftprintf.a)

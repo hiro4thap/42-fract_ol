@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:13:56 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/06 18:24:43 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 19:51:45 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ int	mouse_hook(int mousesym, int x, int y, t_vars *vars)
 	vars->img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bpp,
 			&vars->img.line_length, &vars->img.endian);
-	//TODO:bonus add x/y to centerize the mouse pointer
 	fractal(*vars);
 	return (1);
 }
 
-//TODO:handle closing window by clicking
-//TODO:remove printf
 int	key_hook(int keysym, t_vars *vars)
 {
 	ft_printf("Pressed %d\n", keysym);

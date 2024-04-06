@@ -6,15 +6,15 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:47:13 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/05 19:36:50 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 20:26:18 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
 
-double	scale(double value, double new_max, double new_min, double old_max, double old_min)
+double	scale(double value, double new_max, double new_min, double old_max)
 {
-	return (((value - old_min) * (new_max - new_min) / (old_max - old_min)) + new_min);
+	return ((value * (new_max - new_min) / old_max) + new_min);
 }
 
 t_complex	sum_complex(t_complex z1, t_complex z2)
@@ -52,17 +52,10 @@ double	atodb(char *str)
 		str++;
 	}
 	while (*str && *str != '.')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
+		res = res * 10 + (*str++ - '0');
 	if (*str == '.')
 		str++;
 	while (*str)
-	{
-		res += (*str - '0') * pow(10, i);
-		i--;
-		str++;
-	}
+		res += (*str++ - '0') * pow(10, i--);
 	return (sign * res);
 }

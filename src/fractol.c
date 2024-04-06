@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:05:19 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/06 19:39:00 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/06 20:06:43 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	put_mandelbrot(t_vars vars, int x, int y)
 	t_complex	z;
 	t_complex	c;
 
-	z.x = scale(x, 1.0, -2.0, HEIGHT, 0) * vars.zoom;
-	z.y = scale(y, -1.5, 1.5, WIDTH, 0) * vars.zoom;
+	z.x = scale(x, 1.0, -2.0, HEIGHT) * vars.zoom;
+	z.y = scale(y, -1.5, 1.5, WIDTH) * vars.zoom;
 	c.x = z.x;
 	c.y = z.y;
 	i = 0;
@@ -37,7 +37,7 @@ void	put_mandelbrot(t_vars vars, int x, int y)
 		if (pow(z.x, 2) + pow(z.y, 2) > 4)
 		{
 			my_mlx_pixel_put(&vars.img, x, y,
-				scale(i, C_YELLOW, C_BLUE, ITR, 0));
+				scale(i, C_YELLOW, C_BLUE, ITR));
 			return ;
 		}
 		i++;
@@ -51,9 +51,9 @@ void	put_julia(t_vars vars, int x, int y)
 	t_complex	z;
 	t_complex	c;
 
-	z.x = scale(x, 1.5, -1.5, HEIGHT, 0) * vars.zoom;
-	z.y = scale(y, -1.5, 1.5, WIDTH, 0) * vars.zoom;
-	c.x = vars.julia_x; 
+	z.x = scale(x, 1.5, -1.5, HEIGHT) * vars.zoom;
+	z.y = scale(y, -1.5, 1.5, WIDTH) * vars.zoom;
+	c.x = vars.julia_x;
 	c.y = vars.julia_y;
 	i = 0;
 	while (i < ITR)
@@ -62,7 +62,7 @@ void	put_julia(t_vars vars, int x, int y)
 		if (pow(z.x, 2) + pow(z.y, 2) > 4)
 		{
 			my_mlx_pixel_put(&vars.img, x, y,
-				scale(i, C_YELLOW, C_BLUE, ITR, 0));
+				scale(i, C_YELLOW, C_BLUE, ITR));
 			return ;
 		}
 		i++;
@@ -103,7 +103,7 @@ t_vars	init_mlx(char **av)
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bpp,
 			&vars.img.line_length, &vars.img.endian);
 	vars.zoom = 1.0;
-	if (!ft_strncmp(av[1], "mandelbrot" ,11))
+	if (!ft_strncmp(av[1], "mandelbrot", 11))
 		vars.fractal_type = 1;
 	else if (!ft_strncmp(av[1], "julia", 6))
 	{
@@ -112,35 +112,6 @@ t_vars	init_mlx(char **av)
 		vars.julia_y = atodb(av[3]);
 	}
 	return (vars);
-}
-
-int	is_double(char *str)
-{
-	if (*str == '-')
-		str++;
-while (ft_isdigit(*str))
-		str++;
-	if (*str == '\0')
-		return (1);
-	else if (*str == '.')
-		str++;
-	else
-		return (0);
-	while (ft_isdigit(*str))
-		str++;
-	if (*str == '\0')
-		return (1);
-	return (0);
-}
-
-int	is_arg_valid(int ac, char *av[])
-{
-	if (ac == 2 && !ft_strncmp(av[1], "mandelbrot", 11))
-		return (1);
-	else if (ac == 4 && !ft_strncmp(av[1], "julia", 6)
-		&& is_double(av[2]) && is_double(av[3]))
-		return (1);
-	return (0);
 }
 
 int	main(int ac, char *av[])
