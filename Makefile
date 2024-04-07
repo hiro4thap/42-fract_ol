@@ -18,7 +18,8 @@ INCS = -Iinc/
 SRC = fractol.c \
 		math_utils.c \
 		event_hook.c \
-		validation.c
+		validation.c \
+		render.c
 
 LIBFT = $(addprefix $(LFT_DIR), libft.a)
 LIBPRNT = $(addprefix $(PRNT_DIR), libftprintf.a)
