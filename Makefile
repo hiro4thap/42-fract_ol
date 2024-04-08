@@ -1,7 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-#TODO:need to be switched depending on the OS
 MLX_DIR = minilibx/
 LFT_DIR = libft/
 PRNT_DIR = ft_printf/
@@ -15,6 +14,8 @@ NAME_BONUS = fractol_bonus
 
 FWORKS = -framework OpenGL -framework AppKit
 LIBS = -L$(LFT_DIR) -lft -L$(PRNT_DIR) -lftprintf -L$(MLX_DIR) -lmlx
+LIBFT = $(addprefix $(LFT_DIR), libft.a)
+LIBPRNT = $(addprefix $(PRNT_DIR), libftprintf.a)
 
 INCS = -Iinc/fractol.h
 INCS_BONUS = -Iinc/fractol_bonus.h 
@@ -31,8 +32,6 @@ SRC_BONUS = fractol_bonus.c \
 		validation_bonus.c \
 		render_bonus.c
 
-LIBFT = $(addprefix $(LFT_DIR), libft.a)
-LIBPRNT = $(addprefix $(PRNT_DIR), libftprintf.a)
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS_BONUS = $(addprefix $(SRC_BONUS_DIR), $(SRC_BONUS))
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
