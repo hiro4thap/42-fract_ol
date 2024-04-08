@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:55:18 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/07 16:55:25 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:19:26 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ t_complex	square_complex(t_complex z)
 	res.x = pow(z.x, 2) - pow(z.y, 2);
 	res.y = 2 * z.x * z.y;
 	return (res);
+}
+
+t_complex	absz(t_complex z)
+{
+	if (z.x < 0)
+		z.x *= -1;
+	if (z.y < 0)
+		z.y *= -1;
+	return (z);
 }
 
 double	atodb(char *str)

@@ -6,19 +6,25 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/07 16:48:15 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:43:40 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
 # define XK_ESC 53
+# define XK_LEFT 123
+# define XK_RIGHT 124
+# define XK_DOWN 125
+# define XK_UP 126
 # define ON_DESTROY 17
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 600
+# define WIDTH 600
 # define ITR 40
+# define ZOOM_IN 0.9
+# define ZOOM_OUT 1.1
 
 # define C_WHITE 0x00ffffff
 # define C_BLACK 0x00000000
@@ -53,9 +59,13 @@ typedef struct s_vars
 	void	*win;
 	t_img	img;
 	double	zoom;
-	int		fractal_type; //1:mandelbrot 2:julia
+	int		fractal_type; //1:mandelbrot 2:julia 3:burningshps
 	double	julia_x;
 	double	julia_y;
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
 }				t_vars;
 
 typedef struct s_complex
@@ -83,5 +93,7 @@ int			is_double(char *str);
 int			is_arg_valid(int ac, char *av[]);
 void		fractal(t_vars vars);
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
+t_complex	cube_complex(t_complex z);
+t_complex	absz(t_complex z);
 
 #endif

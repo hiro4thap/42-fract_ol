@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:54:59 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/07 16:55:00 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:19:08 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	is_arg_valid(int ac, char *av[])
 		return (1);
 	else if (ac == 4 && !ft_strncmp(av[1], "julia", 6)
 		&& is_double(av[2]) && is_double(av[3]))
+		return (1);
+	else if (ac == 2 && !ft_strncmp(av[1], "burningships", 13))
 		return (1);
 	return (0);
 }

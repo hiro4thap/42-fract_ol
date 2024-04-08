@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:55:09 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/07 16:55:12 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:40:43 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	render_mandelbrot(t_vars vars, int x, int y)
 
 	z.x = 0.0;
 	z.y = 0.0;
-	c.x = scale(x, 2.0, -2.0, HEIGHT) * vars.zoom;
-	c.y = scale(y, -2.0, 2.0, WIDTH) * vars.zoom;
+	c.x = scale(x, vars.x_max, vars.x_min, HEIGHT);
+	c.y = scale(y, vars.y_max, vars.y_min, WIDTH);
 	i = 0;
 	while (i < ITR)
 	{
@@ -43,8 +43,8 @@ void	render_julia(t_vars vars, int x, int y)
 	t_complex	z;
 	t_complex	c;
 
-	z.x = scale(x, 1.5, -1.5, HEIGHT) * vars.zoom;
-	z.y = scale(y, -1.5, 1.5, WIDTH) * vars.zoom;
+	z.x = scale(x, vars.x_max, vars.x_min, HEIGHT);
+	z.y = scale(y, vars.y_max, vars.y_min, WIDTH);
 	c.x = vars.julia_x;
 	c.y = vars.julia_y;
 	i = 0;
@@ -60,6 +60,31 @@ void	render_julia(t_vars vars, int x, int y)
 		i++;
 	}
 	my_mlx_pixel_put(&vars.img, x, y, C_BLACK);
+}
+
+void	render_burningships(t_vars vars, int x, int y)
+{
+	int			i;
+	t_complex	z;
+	t_complex	c;
+
+	z.x = 0.0;
+	z.y = 0.0;
+	c.x = scale(x, vars.x_max, vars.x_min, HEIGHT);
+	c.y = scale(y, vars.y_max, vars.y_min, WIDTH);
+	i = 0;
+	while (i < ITR)
+	{
+		z = absz(sum_complex(square_complex(z), c));
+		if (pow(z.x, 2) + pow(z.y, 2) > 4)
+		{
+			my_mlx_pixel_put(&vars.img, x, y,
+				scale(i, C_YELLOW, C_BLUE, ITR));
+			return ;
+		}
+		i++;
+	}
+	my_mlx_pixel_put(&vars.img, x, y, C_WHITE);
 }
 
 void	fractal(t_vars vars)
@@ -78,6 +103,8 @@ void	fractal(t_vars vars)
 				render_mandelbrot(vars, x, y);
 			else if (vars.fractal_type == 2)
 				render_julia(vars, x, y);
+			else if (vars.fractal_type == 3)
+				render_burningships(vars, x, y);
 			y++;
 		}
 		x++;

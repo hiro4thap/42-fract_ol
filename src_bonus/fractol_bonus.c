@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:55:32 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/07 16:55:37 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:23:10 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ t_vars	init_mlx(char **av)
 	vars.img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bpp,
 			&vars.img.line_length, &vars.img.endian);
+	vars.x_min = -2.0;
+	vars.x_max = 2.0;
+	vars.y_min = -2.0;
+	vars.y_max = 2.0;
 	vars.zoom = 1.0;
 	if (!ft_strncmp(av[1], "mandelbrot", 11))
 		vars.fractal_type = 1;
@@ -38,6 +42,8 @@ t_vars	init_mlx(char **av)
 		vars.julia_x = atodb(av[2]);
 		vars.julia_y = atodb(av[3]);
 	}
+	else if (!ft_strncmp(av[1], "burningships", 13))
+		vars.fractal_type = 3;
 	return (vars);
 }
 
