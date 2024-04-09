@@ -16,6 +16,7 @@ FWORKS = -framework OpenGL -framework AppKit
 LIBS = -L$(LFT_DIR) -lft -L$(PRNT_DIR) -lftprintf -L$(MLX_DIR) -lmlx
 LIBFT = $(addprefix $(LFT_DIR), libft.a)
 LIBPRNT = $(addprefix $(PRNT_DIR), libftprintf.a)
+LIBMLX = $(addprefix $(MLX_DIR), libmlx.a)
 
 INCS = -Iinc/fractol.h
 INCS_BONUS = -Iinc/fractol_bonus.h 
@@ -39,7 +40,7 @@ OBJ_BONUS = $(patsubst $(SRC_BONUS_DIR)%.c,$(OBJ_BONUS_DIR)%.o,$(SRCS_BONUS))
 
 all:$(NAME)
 
-$(NAME):$(OBJ) $(LIBFT) $(LIBPRNT)
+$(NAME):$(OBJ) $(LIBFT) $(LIBPRNT) $(LIBMLX)
 	$(CC) $(OBJ) $(CFLAGS) $(INCS) $(LIBS) $(FWORKS) -o $@ 
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
@@ -52,9 +53,12 @@ $(LIBFT):
 $(LIBPRNT):
 	make -C $(PRNT_DIR)
 
+$(LIBMLX):
+	make -C $(MLX_DIR)
+
 bonus:$(NAME_BONUS)
 
-$(NAME_BONUS):$(OBJ_BONUS) $(LIBFT) $(LIBPRNT)
+$(NAME_BONUS):$(OBJ_BONUS) $(LIBFT) $(LIBPRNT) $(LIBMLX)
 	$(CC) $(OBJ_BONUS) $(CFLAGS) $(INCS_BONUS) $(LIBS) $(FWORKS) -o $@ 
 
 $(OBJ_BONUS_DIR)%.o:$(SRC_BONUS_DIR)%.c
@@ -64,6 +68,7 @@ $(OBJ_BONUS_DIR)%.o:$(SRC_BONUS_DIR)%.c
 clean:
 	make -C $(LFT_DIR) clean
 	make -C $(PRNT_DIR) clean
+	make -C $(MLX_DIR) clean
 	rm -rf $(OBJ_DIR)
 	rm -rf $(OBJ_BONUS_DIR)
 
