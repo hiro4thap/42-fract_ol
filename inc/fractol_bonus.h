@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:05:21 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/08 17:43:40 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/09 10:03:40 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define MSG_INVALID_ARG "Arguments should be as follows for each set.\n"
 # define MSG_ARG_MANDEBBROT "mandelbrot\n"
 # define MSG_ARG_JULIA "julia [x] [y]\n"
+# define MSG_ARG_BURNINGSHIPS "burningships\n"
 
 # include <fcntl.h>
 # include <stdio.h>

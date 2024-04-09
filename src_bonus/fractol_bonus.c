@@ -6,7 +6,7 @@
 /*   By: hiono <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:55:32 by hiono             #+#    #+#             */
-/*   Updated: 2024/04/08 17:23:10 by hiono            ###   ########.fr       */
+/*   Updated: 2024/04/09 10:03:13 by hiono            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int ac, char *av[])
 		ft_printf(MSG_INVALID_ARG);
 		ft_printf(MSG_ARG_MANDEBBROT);
 		ft_printf(MSG_ARG_JULIA);
+		ft_printf(MSG_ARG_BURNINGSHIPS);
 		return (1);
 	}
 	vars = init_mlx(av);
